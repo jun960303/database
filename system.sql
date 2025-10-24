@@ -3,7 +3,7 @@
 -- hr 사용자 생성 => c##hr
 ALTER SESSION SET "_oracle_script"=TRUE;
 
-@C:\Users\rhkdd\Downloads\db-sample-schemas-main\db-sample-schemas-main\human_resources\hr_install.sql
-@C:\app\rhkdd\product\21c\dbhomeXE\rdbms\admin\scott.sql
+--@C:\Users\rhkdd\Downloads\db-sample-schemas-main\db-sample-schemas-main\human_resources\hr_install.sql
+--@C:\app\rhkdd\product\21c\dbhomeXE\rdbms\admin\scott.sql
+--sys AS ysdba
 
-sys AS ysdba
