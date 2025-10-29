@@ -7,3 +7,8 @@ ALTER SESSION SET "_oracle_script"=TRUE;
 --@C:\app\rhkdd\product\21c\dbhomeXE\rdbms\admin\scott.sql
 --sys AS ysdba
 
+-- 권한부여 : GRANT
+GRANT CREATE VIEW TO SCOTT;
+
+GRANT CREATE PUBLIC SYNONYM TO SCOTT;
+GRANT CREATE synonym TO scott;
