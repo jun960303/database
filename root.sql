@@ -68,7 +68,20 @@ create database if not exists exam;
 -- 이데이터베이스 이용할거야 
 use exam;
 
+
+
 -- 테이블생성
+-- 데이터 유형 
+-- 숫자형 : INT, TINYINT(1 Byte), SMALLINT(2), MEDIUMINT(3), INT(4), BIGINT(8)
+-- 실수형 : 1. 고정소수점 방식
+-- 		     DECIMAL / NUMERIC 
+--        2. 부동소수점 방식 
+-- 		     FLOAT , DOUBLE
+-- 문자형 : CHAR(n) - 고정길이 문자열
+-- 		  VARCHAR(n)
+
+-- 날짜형 : TIME / DATE / DATETIME / TIMESTAR
+
 create table table1(
 	col1 int,
 	col2 varchar(50),
@@ -82,5 +95,61 @@ create table table2(
 );
 
 insert into TABLE2(col2,col3) values('TEST','2025-10-29');
+insert into TABLE2(col1,col2,col3) values(3,'TEST','2025-10-30');
 
 select * from TABLE2;
+
+-- 현재 auto_icrement 로 생성된 마지막 값 확인
+select LAST_INSERT_ID();
+
+-- auto_increment 시작값 변경 
+alter table table2 auto_increment = 100;
+
+-- auto_increment 증가값 변경 
+-- set @@auto_increment_increment = 1;
+
+create table exam_insert_select_from(
+	col1 int,
+	col2 varchar(10)
+);
+
+create table exam_insert_select_to(
+	col1 int,
+	col2 varchar(10)
+);
+
+insert into exam_insert_select_from(col1,col2) values(1,'Do');
+insert into exam_insert_select_from(col1,col2) values(2,'It');
+insert into exam_insert_select_from(col1,col2) values(3,'Mysql');
+
+-- EXAM_INSERT_SELECT_FROM => EXAM_INSERT_SELECT_TO
+
+insert into EXAM_INSERT_SELECT_TO select * from EXAM_INSERT_SELECT_FROM;
+select * from EXAM_INSERT_SELECT_TO;
+
+create table EXAM_SELECT_NEW as select * from EXAM_INSERT_SELECT_FROM;
+select * from exam.EXAM_SELECT_NEW;
+
+create table exam_date_table( 
+	col1 DATE,COL2 TIME,COL3 DATETIME , COL4 TIMESTAMP
+);
+
+insert into EXAM.EXAM_DATE_TABLE VALUES(NOW(),NOW(),NOW(),NOW());
+select * from EXAM.EXAM_DATE_TABLE EDT;
+
+-- 사용자 생성
+
+-- localhost : 내컴퓨터(로컬 접속만 가능)
+-- '%' : 모든 IP에서 접속가능 외부 접속 허용
+CREATE USER 'TEST1'@'localhost' IDENTIFIED BY '12345'; 
+
+-- 권한부여 
+-- grant 권한목록 on 데이터베이스.테이블 to '사용자이름'@'호스트'
+-- grant select,insert,update on exam.table1 to 'test1'@'localhost';
+
+grant all privileges on my exam.* to 'TEST1'@'localhost';
+-- 변경사항 반영
+flush privileges;
+
+-- 사용자 삭제 
+drop user 'test1'@'localhost';
